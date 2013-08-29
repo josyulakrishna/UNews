@@ -1,0 +1,174 @@
+<html>
+    <head>
+    <title>Unews</title>
+    <script src="jquery-1.7.1.min.js"></script>
+    <script src="jquery.mobile.min.js"></script>
+    <link rel="stylesheet" href="jquery.mobile-1.0.1.min.css"  />
+	<script>
+	$(function(){
+
+var branch;
+var branch1;
+var string;
+var test={"cse":"CSE","mec":"MEC","it":"IT","ab":"All Branches","ece":"ECE","eee":"EEE"};
+var jsondata=(function(){
+	 var jsondata=null;
+	 $.ajax({
+		   'async':false,
+		   'global':false,
+		    'url':"http://192.168.2.158/news/ajax_news",
+		    'dataType':"json",
+		    'success':function(data){
+		    	jsondata=data;
+		    }
+	 });
+	 return jsondata;
+	 
+})();
+
+//Heading Append to Pages.
+var jsonobj=eval(jsondata.data);
+var branch=eval(test);
+$.each(jsonobj,function(i,value) { 
+
+	branch1=JSON.stringify(this.applicableto);
+
+	if(branch.cse==this.applicableto){
+	string="<li branch=\"CSE\" >"+this.heading+"</li>";
+	$("div#cse ul#h").append(string);
+	string="";
+	}
+	else if(branch.it==this.applicableto){	string="<li branch=\"IT\">"+this.heading+"</li>";
+	$("div#it ul#h").append(string);
+	string="";
+		}
+	else if(branch.mec==this.applicableto){	string="<li branch=\"MEC\">"+this.heading+"</li>";
+	$("div#mec ul#h").append(string);
+	string="";
+	}	
+	else if(branch.ece==this.applicableto){	string="<li branch=\"ECE\">"+this.heading+"</li>";
+	$("div#ece ul#h").append(string);
+	string="";
+	}
+	else if(branch.eee==this.applicableto){	string="<li branch=\"EEE\">"+this.heading+"</li>";
+	$("div#eee ul#h").append(string);
+	string="";
+	}
+
+	else{	string="<li branch=\"All Branches\">"+this.heading+"</li>";
+	$("div#ab ul#h").append(string);
+	string="";
+	}
+
+});
+
+//generating News for clicked heading.
+
+$("ul#h li").on('click', function() {
+
+	attrib="\""+$(this).text()+"\"";
+	var branch2="\""+$(this).attr("branch")+"\"";
+
+	$.each(jsonobj,function(i,value) { 
+
+	
+	if(eval(branch2)==this.applicableto&&eval(attrib)==this.heading){
+	
+	$("div#npheader h2").html(this.heading);
+	$("div#new").html(this.content);
+	$("p#date").html(this.added);
+	$.mobile.changePage( "#newsp", { transition: "slide"} );	
+	}
+});	
+});
+});
+	
+
+
+	</script>    
+</head>
+<body>
+<div data-role="page" id="unews">
+<div id="header" data-role="header"><h1 style="font-size:30px">UNews</h1></div>
+<div data-role="content">
+<ul data-role="listview" data-theme="a">
+<li><a href="#abp"><h2>College Notifications</h2></a></li>
+<li><a href="#csep" data-transition="slide"><h2>Computer Science</h2></a></li> 
+<li><a href="#itp"><h2>Information Technology</h2></a></li> 
+<li><a href="#mecp"><h2>Mechanical Engineering</h2></a></li> 
+<li><a href="#ecep"><h2>Electronics and Communication</h2></a></li>
+<li><a href="#eeep"><h2>Electrical Engineering</h2></a></li>
+</ul>
+</div>
+<div id="footer" data-role="footer" ><h1 style="font-size:30px">&copy; <a href="#fbp" data-rel="dialog">Dream Makers</a></h1></div>
+</div>
+
+<!--Computer page-->
+<div data-role="page" id="csep" data-add-back-btn="true" >
+<div data-role="header" data-theme="a" align="center"><h2>Computer Science</h2></div>
+<div data-role="content" id="cse">
+<ul id="h" data-role="listview" data-theme="a"><ul>
+</div>
+<div data-role="footer" data-theme="a" align="center"><a href="#unews">UNews</a></div>
+</div>
+
+<!--IT page-->
+<div data-role="page" id="itp" data-add-back-btn="true">
+<div data-role="header" data-theme="a"><h2>Information Technology</h2></div>
+<div data-role="content" id="it">
+<ul id="h" data-role="listview" data-theme="a"><ul>
+</div>
+<div data-role="footer" data-theme="a" align="center"><a href="#unews">UNews</a></div>
+</div>
+<!--Mechanical page-->
+<div data-role="page" id="mecp" data-add-back-btn="true">
+<div data-role="header" data-theme="a"><h2>Mechanical Engineering</h2></div>
+<div data-role="content" id="mec">
+<ul id="h" data-role="listview" data-theme="a"><ul>
+</div>
+<div data-role="footer" data-theme="a" align="center"><a href="#unews">UNews</a></div>
+</div>
+<!--Electronics Page page-->
+<div data-role="page" id="ecep" data-add-back-btn="true">
+<div data-role="header" data-theme="a"><h2>Electronics and Communication</h2></div>
+<div data-role="content" id="ece">
+<ul id="h" data-role="listview" data-theme="a"><ul>
+</div>
+<div data-role="footer" data-theme="a" align="center"><a href="#unews">UNews</a></div>
+</div>
+<!--Electrical page-->
+<div data-role="page" id="eeep" data-add-back-btn="true">
+<div data-role="header" data-theme="a"><h2>Electrical Engineering</h2></div>
+<div data-role="content" id="eee">
+<ul id="h" data-role="listview" data-theme="a"><ul>
+</div>
+<div data-role="footer" data-theme="a" align="center"><a href="#unews">UNews</a></div>
+</div>
+<!--All Branches page-->
+<div data-role="page" id="abp" data-add-back-btn="true">
+<div data-role="header" data-theme="a"><h2>College Notifications</h2></div>
+<div data-role="content" id="ab">
+<ul id="h" data-role="listview" data-theme="a"><ul>
+</div>
+<div data-role="footer" data-theme="a" align="center"><a href="#unews">UNews</a></div>
+</div>
+<!--News page-->
+<div data-role="page" id="newsp" data-add-back-btn="true">
+<div id="npheader" data-role="header" data-theme="a" align="center"><h2></h2></div>
+<div data-role="content" id="new">
+
+</div>
+Date:<p id="date"></p>
+<div data-role="footer" data-theme="a" align="center"><a href="#unews">UNews</a></div>
+</div>
+<!--FB Links-->
+<div data-role="page" id="fbp" >
+<div data-role="header" data-theme="a"><h2>Dream Makers</h2></div>
+<div data-role="content" id="fblinks">
+This application is designed by <a href="http://www.facebook.com/adithyasharmav">Aditya</a>,<a href="http://www.facebook.com/nayan.vemula">NayanDeep</a>,<a href="http://www.facebook.com/profile.php?id=100001253378046">Sampath</a>,<a href="http://www.facebook.com/karthik.neelam">Karthik</a>
+<a href="http://www.facebook.com/josyula.krishna">Krishna</a>
+</div>
+<div data-role="footer" data-theme="a" align="center"><a href="#unews">UNews</a></div>
+</div>
+</body>
+</html>

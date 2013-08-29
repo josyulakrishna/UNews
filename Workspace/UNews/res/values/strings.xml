@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, ConsolidatedUActivity!</string>
+    <string name="app_name">UNews</string>
+	<string name="dialog_message">Notification System , that keeps you updated with your college schedules.Designed by Aditya,Gopal,Nayandeep,Sampath and Karthik</string>
+    <string name="dialog_title">About</string>
+    
+</resources>

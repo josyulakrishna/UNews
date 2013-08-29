@@ -1,0 +1,8 @@
+{"data": [
+
+        {"applicableto": "All Branches", "added": "2012-01-21 21:57:53.859000", "heading": "Holiday", "content": "Holiday on Jan 26", "adder": "kitscse", "id": "4"}, 
+        {"applicableto": "CSE", "added": "2012-01-12 19:35:06.076000", "heading": "Working Days", "content": "We have classes on Thu & Fri everyweek", "adder": "kitscse", "id": "3"},
+       {"applicableto": "CSE", "added": "2012-01-12 19:30:32.691000", "heading": "Seminar Topic", "content": "All students must give seminar", "adder": "kitscse", "id": "2"},
+      {"applicableto": "All Branches", "added": "2012-01-12 18:45:34.582000", "heading": "UNews", "content": "UNews launched", "adder": "kitss", "id": "1"}
+   ]
+}
